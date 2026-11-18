@@ -1,7 +1,21 @@
 <!DOCTYPE html><html lang="zh-Hant"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>作文自學冒險島</title>
-<style>
+<link rel="manifest" href="./manifest.webmanifest"><link rel="apple-touch-icon" href="./icon-192.png"><meta name="theme-color" content="#205985"><style>
 :root{--ink:#20354a;--blue:#245d94;--light:#f2f7fa;--line:#dce5eb;--gold:#fae7bd}*{box-sizing:border-box}body{margin:0;background:#f6f9fb;color:var(--ink);font-family:system-ui,-apple-system,"Noto Sans TC",sans-serif;line-height:1.65}header{background:linear-gradient(110deg,#205985,#49a29d);color:white;padding:26px 18px}header .wrap{max-width:1000px;margin:auto}h1{font-size:clamp(24px,4vw,38px);margin:0}h2{font-size:22px;margin:0 0 12px}h3{margin:14px 0 8px}.sub{opacity:.93}main{max-width:1000px;margin:20px auto;padding:0 14px 60px}.banner{background:#fff4d9;border:1px solid #ecd5a0;border-radius:12px;padding:10px 14px;font-size:14px;margin-bottom:12px}.layout{display:grid;grid-template-columns:185px 1fr;gap:16px}.side,.panel{background:white;border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 3px 10px #2244660a}.side{align-self:start;position:sticky;top:12px}.nav{display:block;width:100%;border:0;border-radius:10px;background:transparent;text-align:left;padding:11px;color:var(--ink);font-size:15px;cursor:pointer}.nav.active{background:#e6f1fa;color:#154c79;font-weight:800}.nav:hover{background:#edf5f9}button{cursor:pointer;border-radius:9px;border:1px solid #bad0df;padding:9px 13px;background:white;color:#194669;font:inherit;font-weight:600}button.primary{background:#206597;color:white;border-color:#206597}button:disabled{opacity:.5;cursor:not-allowed}.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}.card{border:1px solid var(--line);border-radius:14px;padding:14px;margin:12px 0;background:#fff}.soft{background:var(--light)}.muted{color:#64798a;font-size:14px}.pill{border-radius:30px;padding:4px 10px;background:#e8f4f0;display:inline-block;font-size:13px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}label{font-weight:700;display:block;margin-bottom:5px}input,textarea,select{width:100%;padding:11px;border:1px solid #b9cbd6;border-radius:9px;font:inherit;color:var(--ink);background:#fff}textarea{min-height:90px;resize:vertical}.choice{display:block;width:100%;margin:6px 0;text-align:left;font-weight:400}.choice.sel{background:#e7f4fa;border-color:#4089ba}.choice.good{border-color:#36835a;background:#e9f7ee}.choice.bad{border-color:#c76b58;background:#fff1ed}.expl{padding:9px;border-radius:8px;background:#f3f7fa;margin-top:6px;font-size:14px}.result{padding:12px;border-radius:10px;background:#e8f4ec;margin:12px 0}.line{height:8px;background:#e2ebf0;border-radius:30px;overflow:hidden}.fill{height:100%;background:#46978a;transition:width .2s}.steps{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}.step{padding:6px 10px;border-radius:30px;background:#edf3f8;font-size:13px}.step.on{background:#d3ecfa}.coach{border-left:4px solid #c99536;background:#fff9eb;padding:12px;border-radius:8px;margin:12px 0}.small{font-size:13px}.badge{background:#ecf4fe;color:#235782;padding:4px 8px;border-radius:20px;font-size:12px}@media(max-width:700px){.layout{grid-template-columns:1fr}.side{position:static;display:flex;flex-wrap:wrap;gap:3px;padding:9px}.nav{width:auto;font-size:13px;padding:7px}.grid{grid-template-columns:1fr}.panel{padding:14px}}
-</style></head><body>
+.app-install { margin-top:10px; }
+.app-install summary { cursor:pointer; }
+button:focus-visible, summary:focus-visible { outline:3px solid #bd7215; outline-offset:2px; }
+@media (max-width:700px) {
+  header { padding:20px 16px; }
+  main { margin-top:12px; padding-inline:12px; padding-bottom:calc(36px + env(safe-area-inset-bottom)); }
+  .layout { gap:10px; }
+  .side { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:4px; }
+  .nav { width:100%; min-height:44px; font-size:13px; padding:6px 3px; text-align:center; overflow-wrap:anywhere; line-height:1.35; }
+  button { min-height:44px; }
+  input,textarea,select { font-size:16px; }
+}
+@media (max-width:360px) {
+  .side { grid-template-columns:repeat(3,minmax(0,1fr)); }
+}</style></head><body>
 <script>
 /* 複製模組時，只需增加這個陣列中的新物件；題目需自行撰寫，不要複製答案當作新題。 */
 window.MODULES = [
@@ -44,7 +58,7 @@ window.MODULES = [
 </script>
 
 <header><div class="wrap"><div class="small">東小403｜可複製教學原型</div><h1>🏝️ 作文自學冒險島</h1><div class="sub" id="hero"></div></div></header>
-<main><div class="banner">📌 本版免登入，<b>進度只保存在此裝置與瀏覽器</b>。換裝置、清除瀏覽資料或使用無痕模式，可能遺失進度。請勿輸入真實姓名、地址等個資；可隨時匯出學習成果。</div><div class="layout"><aside class="side" id="menu"></aside><article class="panel" id="screen" aria-live="polite"></article></div></main>
+<main><div class="banner">📌 本版免登入，<b>進度只保存在此裝置與瀏覽器</b>。換裝置、清除瀏覽資料或使用無痕模式，可能遺失進度。請勿輸入真實姓名、地址等個資；可隨時匯出學習成果。<details class="app-install"><summary>如何加到手機主畫面</summary><p>iPhone／iPad：用 Safari 開啟後，點「分享」→「加入主畫面」。Android：用 Chrome 開啟後，從選單選「安裝應用程式」或「加到主畫面」。</p></details></div><div class="layout"><aside class="side" id="menu"></aside><article class="panel" id="screen" aria-live="polite"></article></div></main>
 <script>
 'use strict';const M=window.MODULES[0], KEY='writing-island:'+M.id+':v1';const PAGES=[['home','🏠 學習首頁'],['S','👀 S 觀察'],['P','🧠 P 心智圖'],['E','✍️ E 寫作'],['A','🤖 A 教練'],['K','🎤 K 精進'],['quiz','🧩 題庫闖關'],['export','📚 成長護照']];
 const empty=()=>({mind:Array(M.mindmap.length).fill(''),observations:Array(M.observation.length).fill(''),draft:Array(4).fill(''),revised:Array(4).fill(''),speech:'',reflection:'',revisionReason:'',checks:[],answers:{},completed:{},coachHistory:[]});
@@ -73,4 +87,5 @@ function portfolio(){const answered=Object.values(data.answers),correct=answered
 async function copyReport(){try{await navigator.clipboard.writeText(report());el('reportState').textContent='✓ 已複製'}catch(e){el('reportState').textContent='此瀏覽器無法直接複製，請用下載文字檔'}}
 function resetAll(){if(confirm('確定刪除本裝置上此模組的所有學習資料？')){localStorage.removeItem(KEY);data=empty();nav('home')}}
 render();
-</script></body></html>
+</script><script>if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {navigator.serviceWorker.register('./sw.js').catch(error => console.warn('Offline setup unavailable', error));}</script></body></html>
+
