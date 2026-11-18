@@ -1,6 +1,6 @@
 const prefix = 'essay-island-mobile:' + self.registration.scope + ':';
-const cacheName = prefix + 'v2';
-const assets = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png'];
+const cacheName = prefix + 'v3';
+const assets = ['./', './index.html', './manifest.webmanifest', './turtle-bold-32.png', './turtle-bold-192.png', './turtle-bold-512.png'];
 const allowedUrls = new Set(assets.map(asset => new URL(asset, self.registration.scope).href));
 
 self.addEventListener('install', event => {

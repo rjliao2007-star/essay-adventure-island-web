@@ -11,14 +11,15 @@
   "icons": [
     {
       "type": "image/png",
-      "sizes": "192x192",
-      "src": "./icon-192.png"
+      "purpose": "any",
+      "src": "./turtle-bold-192.png",
+      "sizes": "192x192"
     },
     {
       "type": "image/png",
-      "sizes": "512x512",
-      "src": "./icon-512.png",
-      "purpose": "any maskable"
+      "purpose": "any",
+      "src": "./turtle-bold-512.png",
+      "sizes": "512x512"
     }
   ]
 }
