@@ -1,5 +1,5 @@
 const prefix = 'essay-island-mobile:' + self.registration.scope + ':';
-const cacheName = prefix + 'v1';
+const cacheName = prefix + 'v2';
 const assets = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png'];
 const allowedUrls = new Set(assets.map(asset => new URL(asset, self.registration.scope).href));
 
