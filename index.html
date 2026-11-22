@@ -24,7 +24,13 @@ button:focus-visible, summary:focus-visible { outline:3px solid #bd7215; outline
 }
 @media (max-width:360px) {
   .side { grid-template-columns:repeat(3,minmax(0,1fr)); }
-}</style></head><body>
+}
+.student-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.student-clear{margin-top:10px}@media(max-width:500px){.student-grid{grid-template-columns:1fr}}
+ .landing-card{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);align-items:center;gap:20px;padding:20px;background:#fff;border:1px solid var(--line);border-radius:18px;margin:0 0 16px}
+.landing-card img{display:block;width:100%;height:auto;border-radius:14px}
+#course-area[hidden],#landing[hidden]{display:none}
+@media(max-width:700px){.landing-card{grid-template-columns:1fr;gap:12px;padding:14px}}
+.story-map{list-style:none;padding:0;margin:0}.story-map h4{margin:0;font-size:1.1rem}.story-map p{margin:.45rem 0}</style></head><body>
 <script>
 /* 複製模組時，只需增加這個陣列中的新物件；題目需自行撰寫，不要複製答案當作新題。 */
 window.MODULES = [
@@ -63,38 +69,772 @@ window.MODULES = [
   {id:'K04',stage:'K',kind:'檢核成果',q:'完成這個模組，哪一組作品最能呈現進步？',options:['只有一個漂亮標題','只有題目答對率','只有別人寫的範文','心智圖、初稿、修訂稿、修改理由與口語自評'],answer:3,why:['無法看到完整學習歷程。','不能證明真實寫作能力。','不是學生的自主產出。','能記錄觀察、構思、寫作和發表的改進。']}
  ]
  }
+,
+{
+  "id": "L3-W08-LUNCH",
+  "grade": "L3 四年級",
+  "island": "第 8 週 · 物品與生活事件",
+  "title": "歡樂的營養午餐時光",
+  "subtitle": "從餐盤出發，寫午餐時真正發生的一件小事：原本怎樣、發生什麼、你怎麼做、後來有什麼不同。",
+  "objectives": [
+    "選一件真實發生的午餐小事，交代起因、變化、反應與結果",
+    "用一個精準動詞和一種感官細節，放大事情起變化的一刻",
+    "寫成四段短文，修訂最重要的一句，再用自己的話說給同學聽"
+  ],
+  "observation": [
+    "回想午餐時真正發生的一件小事。在哪裡？你和誰本來正在做什麼？",
+    "事情在哪一刻起了變化？圈定那一秒，你看見、聽見或感到什麼？",
+    "你或身邊的人接著做了什麼？照先後寫出兩個動作。",
+    "事情最後怎麼了？和開始時相比，有哪一件事不同？"
+  ],
+  "mindmap": [
+    [
+      "時間與地點",
+      "哪一天的午餐？在領餐處、座位旁，還是整理餐具時？"
+    ],
+    [
+      "人物",
+      "這件事有哪些人？誰先做了什麼？"
+    ],
+    [
+      "起因",
+      "事情發生前，你原本要做什麼？"
+    ],
+    [
+      "變化",
+      "哪個動作、聲音或發現讓事情有了變化？"
+    ],
+    [
+      "當下的感官",
+      "那一秒你真的看到、聽到或感到什麼？只挑和事件有關的一筆。"
+    ],
+    [
+      "我的反應",
+      "你當下怎麼想、怎麼做？"
+    ],
+    [
+      "接下來的行動",
+      "別人有沒有幫忙？你有沒有再試一次或換個做法？"
+    ],
+    [
+      "結果與發現",
+      "後來怎麼了？你看見了什麼改變？"
+    ]
+  ],
+  "storyMap": "起因：原本在做什麼 → 變化：發生了什麼 → 反應：我或別人怎麼做 → 結果：後來有什麼不同",
+  "writingGoal": "參考約 400 字。也可以先把每段寫成 2～3 句，再補真實細節。",
+  "paragraph": [
+    {
+      "name": "起因：午餐時我原本在做什麼",
+      "target": 80,
+      "tip": "先交代時間、地點和人物，再帶到你準備做的事。",
+      "prompt": "你原本在排隊、分餐、用餐，還是在整理？誰在你旁邊？"
+    },
+    {
+      "name": "變化：哪一刻事情不同了",
+      "target": 120,
+      "tip": "把事情起變化的那一秒放慢，選一項與事件有關的真實感官。",
+      "prompt": "事情本來很平常，哪個動作、聲音或發現讓你停了一下？"
+    },
+    {
+      "name": "反應：我和別人接著怎麼做",
+      "target": 120,
+      "tip": "用兩個精準動詞排出先後。記得真實的對話，可以加一句。",
+      "prompt": "你先做了什麼？誰接著做了什麼？你有沒有改變做法？"
+    },
+    {
+      "name": "結果：後來有什麼改變",
+      "target": 80,
+      "tip": "寫出看得見的結果，再補一句你自己的發現。",
+      "prompt": "事情最後怎麼了？你下次還會用同樣的做法嗎？為什麼？"
+    }
+  ],
+  "senses": {
+    "視覺｜眼睛看到": [
+      "白白的飯粒",
+      "金黃的豆腐",
+      "亮亮的水珠",
+      "往上飄的白霧",
+      "快碰到碗邊的湯",
+      "落在桌角的飯粒"
+    ],
+    "聽覺｜耳朵聽到": [
+      "叮的一聲",
+      "喀一聲扣上",
+      "嘩啦啦的水聲",
+      "椅腳擦過地板",
+      "同學小聲提醒",
+      "湯滴到桌面的聲音"
+    ],
+    "嗅覺｜鼻子聞到": [
+      "米飯香",
+      "淡淡的蔥香",
+      "烤地瓜的甜香",
+      "湯剛盛好時的香味",
+      "靠近才聞得到的菜香",
+      "一開蓋就飄出的香味"
+    ],
+    "味覺｜舌頭嚐到": [
+      "淡淡的鹹味",
+      "一點點酸",
+      "嚐到一點甜",
+      "微微的辣味",
+      "喝完才感覺到的甜味",
+      "比想像中清淡"
+    ],
+    "觸覺｜碰到或咬到的感覺": [
+      "碗壁暖暖的",
+      "盒蓋冰冰的",
+      "餐盤邊緣滑滑的",
+      "飯粒軟軟的",
+      "青菜脆脆的",
+      "豆腐外脆內嫩"
+    ]
+  },
+  "endings": [
+    [
+      "感想",
+      "原來盛一碗湯，也要留意手上的動作。"
+    ],
+    [
+      "感恩",
+      "我想謝謝今天幫忙準備和分餐的人。"
+    ],
+    [
+      "希望",
+      "下次我想再觀察一道常吃的菜。"
+    ],
+    [
+      "建議",
+      "排隊時留一點空間，端餐會更從容。"
+    ],
+    [
+      "祝福",
+      "希望一起用餐的人都能享受這一餐。"
+    ],
+    [
+      "影響",
+      "從那天起，我更留意午餐時間的小細節。"
+    ]
+  ],
+  "speech": [
+    "開場：用一句話說明午餐時你原本在做什麼。",
+    "經過：說出哪一刻起了變化，以及你看見或聽見的細節。",
+    "反應：按先後說自己與他人做了什麼。",
+    "結尾：說出最後的結果和你的一個發現。"
+  ],
+  "rubric": [
+    "我有交代午餐事件的時間、地點與人物",
+    "我寫得出事情何時變化，以及我的反應",
+    "我用一個真實感官細節幫讀者看見變化",
+    "我寫出結果，並能說明一句修改的理由",
+    "我能按事件順序做 1～2 分鐘分享"
+  ],
+  "coachPrompts": [
+    "先選午餐時真的發生的一件小事，寫下事情開始前你正在做什麼。",
+    "寫出「原本＿＿，後來＿＿」找出變化，再想想你當下做的第一個動作。",
+    "第二段把變化的一秒放慢：哪個動作或聲音讓你注意到事情不同了？",
+    "第三段用「我先＿＿，接著＿＿」寫清你的反應，讓讀者知道後來為何會改變。",
+    "第四段寫結果：哪件事和開頭不同？這次的小事讓你發現什麼？",
+    "朗讀四段。把一個跟事件無關的食物描寫換成當下的動作或感受，再說明修改理由。"
+  ],
+  "questions": [
+    {
+      "id": "L1",
+      "stage": "S",
+      "kind": "觀察細節",
+      "q": "哪一句最能讓讀者看見餐盤？",
+      "answer": 2,
+      "options": [
+        "午餐很好。",
+        "餐盤裡有東西。",
+        "白飯旁邊疊著兩片金黃的豆腐。",
+        "我很喜歡吃飯。"
+      ],
+      "why": [
+        "只有評價。",
+        "沒有具體的食物或位置。",
+        "有食物、數量、顏色和位置。",
+        "只說喜好。"
+      ]
+    },
+    {
+      "id": "L2",
+      "stage": "S",
+      "kind": "真實感官",
+      "q": "沒有吃過某道菜，可以怎麼寫？",
+      "answer": 0,
+      "options": [
+        "寫自己看見的顏色和形狀。",
+        "猜它一定很辣。",
+        "說自己咬了一大口。",
+        "照抄同學說的味道，當成自己的。"
+      ],
+      "why": [
+        "看見的細節可以如實描寫。",
+        "辣味只是猜測。",
+        "這個動作沒有發生。",
+        "可標明是同學說的，不能當成親身經歷。"
+      ]
+    },
+    {
+      "id": "L9",
+      "stage": "S",
+      "kind": "位置與動作",
+      "q": "想寫出餐盤裡主菜和配菜的位置，哪一句最清楚？",
+      "answer": 1,
+      "options": [
+        "今天有好多顏色。",
+        "深綠的青菜靠著餐格右邊，一塊金黃的豆腐斜靠在白飯旁。",
+        "我覺得豆腐一定很香。",
+        "餐盤有三格，很好看。"
+      ],
+      "why": [
+        "只說顏色多，沒說是哪個食物。",
+        "顏色和相對位置一起建立畫面。",
+        "香味猜測不能交代位置。",
+        "格數有用，但食物仍沒有位置。"
+      ]
+    },
+    {
+      "id": "L10",
+      "stage": "S",
+      "kind": "辨認聲音來源",
+      "q": "你聽到湯杓碰到鍋邊兩次，想讓讀者像在現場。哪一句最好？",
+      "answer": 3,
+      "options": [
+        "午餐很吵。",
+        "我聽到全班都在尖叫。",
+        "湯很香，大家都很快樂。",
+        "值日生把湯杓放回鍋裡，杓柄敲到鍋邊，叮、叮兩聲。"
+      ],
+      "why": [
+        "只有總體印象。",
+        "題目沒有這個事實。",
+        "換成嗅覺和心情，少了實際聲音。",
+        "聲音、來源和動作相連，畫面容易想像。"
+      ]
+    },
+    {
+      "id": "L11",
+      "stage": "S",
+      "kind": "分清看到和嚐到",
+      "q": "你看到豆腐表面有焦黃小點，還沒吃到。哪句既具體又真實？",
+      "answer": 2,
+      "options": [
+        "豆腐吃起來又脆又辣。",
+        "它看起來很普通。",
+        "淡黃色的豆腐表面，有幾個深褐色的小點。",
+        "同學說有點甜，所以我覺得很甜。"
+      ],
+      "why": [
+        "把沒試過的口感和味道當成事實。",
+        "普通沒有交代看到什麼。",
+        "用顏色和分布寫出確定看見的細節。",
+        "同學的經驗不能當作自己的味覺。"
+      ]
+    },
+    {
+      "id": "L12",
+      "stage": "S",
+      "kind": "觀察前後變化",
+      "q": "打開餐盒時先看見白霧，過一下白霧散了，盒蓋內側有水珠。哪一句最能呈現變化？",
+      "answer": 0,
+      "options": [
+        "餐盒一掀開，一團白霧往上冒。等白霧散去，盒蓋內側還掛著幾顆水珠。",
+        "午餐好新鮮。",
+        "盒蓋一直在滴雨。",
+        "我很幸福，那天很難忘。"
+      ],
+      "why": [
+        "依先後寫出兩個真實畫面。",
+        "把觀察換成評價。",
+        "把凝結水珠說成下雨，混淆了場景。",
+        "情緒沒有顯示白霧和水珠的差別。"
+      ]
+    },
+    {
+      "id": "L3",
+      "stage": "P",
+      "kind": "流程排序",
+      "q": "哪個順序讓讀者容易跟上？",
+      "answer": 1,
+      "options": [
+        "用餐→盛餐→排隊→整理",
+        "排隊→盛餐→用餐→整理",
+        "整理→用餐→排隊→盛餐",
+        "排隊→整理→用餐→盛餐"
+      ],
+      "why": [
+        "把開始放到了後面。",
+        "按這段示例的用餐流程排列。",
+        "先整理再盛餐，時序難懂。",
+        "盛餐應在用餐之前。"
+      ]
+    },
+    {
+      "id": "L4",
+      "stage": "P",
+      "kind": "選擇重點",
+      "q": "文章要寫盛湯，哪一筆最有用？",
+      "answer": 3,
+      "options": [
+        "上個月的天氣。",
+        "我的鉛筆盒。",
+        "下課玩的遊戲。",
+        "湯勺靠近碗邊時，我放慢手上的動作。"
+      ],
+      "why": [
+        "離開午餐場景。",
+        "無關盛湯。",
+        "除非影響用餐，否則容易離題。",
+        "把盛湯的關鍵動作放大了。"
+      ]
+    },
+    {
+      "id": "L15",
+      "stage": "P",
+      "kind": "找出事件轉折",
+      "q": "小晴原本在分湯，發現自己的碗快滿了，就請同學先把湯杓停一下。哪一句最能交代事情的轉折？",
+      "options": [
+        "午餐時間到了。",
+        "湯裡有蘿蔔和玉米。",
+        "湯快碰到碗邊，我連忙說：「先停一下！」",
+        "最後我們把餐具收好。"
+      ],
+      "answer": 2,
+      "why": [
+        "只交代時間。",
+        "寫到內容物，沒有事情的變化。",
+        "先寫出碗快滿，再寫人物反應，讓讀者知道接下來為何不同。",
+        "是結果之後的收拾。"
+      ]
+    },
+    {
+      "id": "L5",
+      "stage": "E",
+      "kind": "精準動詞",
+      "q": "哪一句用動作寫出小心？",
+      "answer": 2,
+      "options": [
+        "我好小心。",
+        "我非常小心。",
+        "我用雙手托住碗，慢慢放到桌上。",
+        "午餐時間到了。"
+      ],
+      "why": [
+        "只有抽象感受。",
+        "加強程度，仍看不到動作。",
+        "「托住」「放」讓讀者看出小心。",
+        "只交代時間。"
+      ]
+    },
+    {
+      "id": "L6",
+      "stage": "E",
+      "kind": "口說開場",
+      "q": "哪個開場最能帶聽眾進入場景？",
+      "answer": 1,
+      "options": [
+        "我有四個段落。",
+        "湯勺一碰到鍋邊，叮的一聲，我就知道輪到我了。",
+        "這篇作文有很多字。",
+        "以上是我的報告。"
+      ],
+      "why": [
+        "只介紹格式。",
+        "聲音把聽眾帶進午餐現場。",
+        "沒有故事線索。",
+        "這是結語。"
+      ]
+    },
+    {
+      "id": "L13",
+      "stage": "E",
+      "kind": "連起觸覺與動作",
+      "q": "你隔著碗壁覺得溫熱，就改用雙手托碗。哪句最能寫出原因和動作？",
+      "answer": 2,
+      "options": [
+        "這碗湯又甜又香。",
+        "我和同學拿了碗。",
+        "碗壁的暖意傳到指尖，我便用雙手托住碗，慢慢端回座位。",
+        "湯好熱好熱，我非常小心。"
+      ],
+      "why": [
+        "用了沒有給出的味覺。",
+        "只有動作，少了改變做法的原因。",
+        "觸覺解釋了為什麼改用雙手，還寫出速度。",
+        "加強語氣，但沒寫怎麼小心。"
+      ]
+    },
+    {
+      "id": "L16",
+      "stage": "E",
+      "kind": "補上反應與結果",
+      "q": "「我端著餐盤走回座位，湯忽然晃到碗邊。」接哪一句最能把小事件寫完整？",
+      "options": [
+        "我停下腳步，用雙手托穩餐盤。等湯不晃了，我才慢慢走回座位。",
+        "今天的青菜是深綠色。",
+        "我覺得午餐很好吃。",
+        "學校操場很大。"
+      ],
+      "answer": 0,
+      "why": [
+        "有接續的反應和看得見的結果。",
+        "靜態顏色沒有交代湯晃了之後怎麼了。",
+        "喜好沒有接住事件。",
+        "場景從午餐跳到操場。"
+      ]
+    },
+    {
+      "id": "L7",
+      "stage": "K",
+      "kind": "自主修訂",
+      "q": "怎麼修改「午餐很熱鬧」最有幫助？",
+      "answer": 3,
+      "options": [
+        "加三個驚嘆號。",
+        "把每句都改成成語。",
+        "多寫兩次「很熱鬧」。",
+        "補上當時聽到的聲音或看到的動作。"
+      ],
+      "why": [
+        "標點不能補出細節。",
+        "不一定更貼合經驗。",
+        "只是重複。",
+        "用真實細節解釋為什麼熱鬧。"
+      ]
+    },
+    {
+      "id": "L8",
+      "stage": "K",
+      "kind": "說明理由",
+      "q": "哪句最能說明你的修改？",
+      "answer": 0,
+      "options": [
+        "我把「拿食物」改成「夾起豆腐」，讓讀者看見動作。",
+        "我改了很多。",
+        "因為新句比較長。",
+        "我覺得改過就好。"
+      ],
+      "why": [
+        "有原句、新句與修改理由。",
+        "沒有說改在哪裡。",
+        "長度無法說明改善。",
+        "沒有說明修改帶來什麼效果。"
+      ]
+    },
+    {
+      "id": "L14",
+      "stage": "K",
+      "kind": "選最有用的一種感官",
+      "q": "你的段落要寫「我怎麼小心盛湯」。哪個細節最值得補進去？",
+      "answer": 1,
+      "options": [
+        "隔壁同學的餐袋是紫色的。",
+        "湯勺靠到碗邊，我聽見輕輕一聲，就放慢手上的動作。",
+        "食物有甜、酸、苦、辣、鹹五種味道。",
+        "用五句話逐一介紹整個教室的聲音。"
+      ],
+      "why": [
+        "是視覺細節，但離開盛湯的重點。",
+        "聲音和動作有關，讓小心看得出來。",
+        "列出感官名詞不是當下經驗。",
+        "題目只需一個有用的細節。"
+      ]
+    }
+  ],
+  "sensoryGuide": "先挑一件午餐小事，再選一種感官幫你寫清楚。先寫一句「我看到／聽到／感到＿＿」，再接一句「我就＿＿」。照自己的經驗填，不用每種感官都寫。",
+  "eventGuide": "不用找驚險的事。輪到我第一次分菜、同學提醒我扶住餐盒，或我發現自己的分餐方法可以更好，都是小事件。先說清楚事情怎麼發生，再選當時真正看見、聽見或感到的細節。",
+  "sensoryExamples": [
+    [
+      "視覺",
+      "湯晃到碗邊。我停下腳步，等湯不晃了才繼續走。"
+    ],
+    [
+      "視覺",
+      "盒蓋上有幾顆水珠。我一打開，水珠就往下滑，差點滴到課本上。"
+    ],
+    [
+      "視覺",
+      "我看見桌角掉了幾粒飯，便拿紙巾把它們擦乾淨。"
+    ],
+    [
+      "聽覺",
+      "湯杓碰到鍋邊，叮的一聲。我把手放慢，再把湯倒進碗裡。"
+    ],
+    [
+      "聽覺",
+      "身後的同學小聲說：「等一下。」我低頭一看，才發現自己的餐盤端歪了。"
+    ],
+    [
+      "聽覺",
+      "餐盒喀一聲扣上。我拉了一下盒蓋，確認扣緊才收進袋子。"
+    ],
+    [
+      "嗅覺",
+      "盒蓋一打開，米飯香就飄了出來。我放下筷子，先看看今天有哪幾道菜。"
+    ],
+    [
+      "嗅覺",
+      "我走近湯鍋，聞到淡淡的蔥香，才發現同學正在幫大家盛湯。"
+    ],
+    [
+      "嗅覺",
+      "我聞到地瓜的甜香，便轉頭問同學：「今天是不是有地瓜？」"
+    ],
+    [
+      "味覺",
+      "我以為這道菜會很鹹。嚐了一小口，才發現味道比我想的淡。"
+    ],
+    [
+      "味覺",
+      "湯喝起來有一點辣。我停了一下，才發現是胡椒的味道。"
+    ],
+    [
+      "味覺",
+      "我以為番茄會很酸。咬了一口，酸味後面還有一點甜。"
+    ],
+    [
+      "觸覺與口感",
+      "碗壁暖暖的。我用一隻手托住碗底，另一隻手扶著碗邊。"
+    ],
+    [
+      "觸覺與口感",
+      "餐盤邊緣有點滑，我趕緊改用雙手端住。"
+    ],
+    [
+      "觸覺與口感",
+      "我以為豆腐很硬。咬開才知道，外面脆脆的，裡面卻很嫩。"
+    ]
+  ],
+  "expressions": [
+    [
+      "井然有序",
+      "成語",
+      "大家照順序做事，沒有擠成一團。",
+      "大家排好隊，一個接一個盛飯，分餐時井然有序。"
+    ],
+    [
+      "手忙腳亂",
+      "成語",
+      "一下子要做太多事，忙得不知道先做哪件。",
+      "湯差點灑出來，筷子又掉了，我一下子手忙腳亂。"
+    ],
+    [
+      "小心翼翼",
+      "成語",
+      "做事很小心，怕弄灑或弄壞。",
+      "我小心翼翼地端著湯，慢慢走回座位。"
+    ],
+    [
+      "津津有味",
+      "成語",
+      "吃得很有滋味。",
+      "我本來只想嚐一口，後來吃得津津有味。"
+    ],
+    [
+      "恍然大悟",
+      "成語",
+      "原本不明白，後來一下子想通了。",
+      "看見同學先把碗放穩再盛湯，我恍然大悟：這樣比較不容易灑。"
+    ],
+    [
+      "有說有笑",
+      "四字詞",
+      "大家一邊說話，一邊笑。",
+      "整理完餐具後，我和同學有說有笑地走回教室。"
+    ],
+    [
+      "熱氣騰騰",
+      "四字詞",
+      "食物很熱，看得見熱氣往上冒。",
+      "熱氣騰騰的湯剛盛好，我先等了一會兒才喝。"
+    ],
+    [
+      "香氣撲鼻",
+      "四字詞",
+      "香味很明顯，一下就聞到了。",
+      "一掀開飯盒，香氣撲鼻，我忍不住低頭看今天的菜。"
+    ],
+    [
+      "外脆內嫩",
+      "四字詞",
+      "咬起來外面脆、裡面嫩。",
+      "豆腐外脆內嫩，我咬了一口才知道它不像看起來那麼硬。"
+    ],
+    [
+      "酸酸甜甜",
+      "四字詞",
+      "嚐得到酸味，也嚐得到甜味。",
+      "我嚐了一口番茄，酸酸甜甜的，和原先想的不一樣。"
+    ],
+    [
+      "一滴不漏",
+      "四字詞",
+      "真的連一滴都沒有灑出來。",
+      "我把碗端平，一滴不漏地送回座位。"
+    ],
+    [
+      "輕手輕腳",
+      "四字詞",
+      "手腳動得輕，盡量不要發出聲音。",
+      "同學正在聽老師說話，我輕手輕腳地把餐盤放下。"
+    ]
+  ],
+  "storyParagraphs": [
+    [
+      "第 1 段｜起因",
+      "交代時間、地點、人物和你原本在做的事。讀者要先知道故事從哪裡開始。",
+      "星期三中午，我在教室幫忙分湯。輪到我的時候，我端著剛盛好的湯往座位走。",
+      "下一段開始寫：突然發生了什麼？"
+    ],
+    [
+      "第 2 段｜變化",
+      "專心寫事情起變化的那一刻。挑一個看到、聽到或感到的細節，再寫你當下的心情。",
+      "我走到桌邊，湯忽然晃到碗沿。我嚇了一跳，心想：再走一步，湯可能就要灑出來了。",
+      "下一段開始寫：我接著怎麼做？"
+    ],
+    [
+      "第 3 段｜反應",
+      "寫你或別人為了處理這件事做了什麼。按先後寫兩個動作，讀者就能跟上。",
+      "我先停下腳步，再用另一隻手托住碗底。同學幫我把椅子拉開，我才把湯慢慢放到桌上。",
+      "下一段開始寫：事情最後怎麼了？"
+    ],
+    [
+      "第 4 段｜結果",
+      "先說結果，再寫自己的感想或發現。想一想，這件事讓你下次會怎麼做。",
+      "湯一滴也沒有灑出來，我鬆了一口氣。下次端湯時，我會先用雙手扶穩，再慢慢走回座位。",
+      "寫到這裡就能收尾。"
+    ]
+  ]
+}
+
 ];
 </script>
 
 <header><div class="wrap"><div class="small">東小403｜可複製教學原型</div><h1>🏝️ 作文自學冒險島</h1><div class="sub" id="hero"></div></div></header>
-<main><div class="banner">📌 本版免登入，<b>進度只保存在此裝置與瀏覽器</b>。換裝置、清除瀏覽資料或使用無痕模式，可能遺失進度。請勿輸入真實姓名、地址等個資；可隨時匯出學習成果。<details class="app-install"><summary>如何加到手機主畫面</summary><p>iPhone／iPad：用 Safari 開啟後，點「分享」→「加入主畫面」。Android：用 Chrome 開啟後，從選單選「安裝應用程式」或「加到主畫面」。</p></details></div><div class="layout"><aside class="side" id="menu"></aside><article class="panel" id="screen" aria-live="polite"></article></div></main>
+<main><section id="landing" class="landing-card" aria-labelledby="landing-title">
+<div><h2 id="landing-title">從生活裡找到故事</h2><p>選一個主題，用 SPEAK 五關練習觀察、構思、寫作、接受教練追問，再修改與口說。</p><p>草稿和進度會留在這個瀏覽器，也可以匯出成長護照。</p></div>
+<img src="./lesson-landing.png" width="864" height="576" alt="背著故事書的小海龜游向冒險島">
+</section><div class="card soft"><label for="topic">選擇課程主題</label><select id="topic" onchange="switchModule(this.value)"></select></div><section id="course-area" hidden><div class="actions"><button type="button" onclick="showLanding()">回網站首頁</button></div><div class="banner">📌 本版免登入，<b>進度只保存在此裝置與瀏覽器</b>。換裝置、清除瀏覽資料或使用無痕模式，可能遺失進度。學生欄位依老師指示填寫。作文請勿寫住址、電話等個資。<details class="app-install"><summary>如何加到手機主畫面</summary><p>iPhone／iPad：用 Safari 開啟後，點「分享」→「加入主畫面」。Android：用 Chrome 開啟後，從選單選「安裝應用程式」或「加到主畫面」。</p></details></div><section class="card" aria-labelledby="student-heading">
+<h2 id="student-heading">學生資料</h2>
+<p class="muted" id="student-note">依老師指示填寫，可留空。資料留在這個瀏覽器，匯出的學習護照會包含已填入的欄位。</p>
+<div class="grid student-grid" aria-describedby="student-note">
+<div><label for="student-class">班級</label><input id="student-class" type="text" maxlength="12" placeholder="例如：403" autocomplete="off"></div>
+<div><label for="student-seat">座號</label><input id="student-seat" type="text" inputmode="numeric" maxlength="6" placeholder="例如：07" autocomplete="off"></div>
+<div><label for="student-name">姓名</label><input id="student-name" type="text" maxlength="24" autocomplete="off"></div>
+</div>
+<button type="button" class="student-clear" onclick="clearStudentProfile()">清除學生資料</button>
+<p class="muted" id="student-status" role="status"></p>
+</section><div class="layout"><aside class="side" id="menu"></aside><article class="panel" id="screen" aria-live="polite"></article></div></section></main>
 <script>
-'use strict';const M=window.MODULES[0], KEY='writing-island:'+M.id+':v1';const PAGES=[['home','🏠 學習首頁'],['S','👀 S 觀察'],['P','🧠 P 心智圖'],['E','✍️ E 寫作'],['A','🤖 A 教練'],['K','🎤 K 精進'],['quiz','🧩 題庫闖關'],['export','📚 成長護照']];
+'use strict';let M=window.MODULES[0];
+const moduleKey=()=> 'writing-island:'+M.id+':v1';const PAGES=[['home','🏠 學習首頁'],['S','👀 S 觀察'],['P','🧠 P 心智圖'],['E','✍️ E 寫作'],['A','🤖 A 教練'],['K','🎤 K 精進'],['quiz','🧩 題庫闖關'],['export','📚 成長護照']];
 const empty=()=>({mind:Array(M.mindmap.length).fill(''),observations:Array(M.observation.length).fill(''),draft:Array(4).fill(''),revised:Array(4).fill(''),speech:'',reflection:'',revisionReason:'',checks:[],answers:{},completed:{},coachHistory:[]});
 let data=empty(),page='home',quizStage='all',qi=0,selected=-1,revealed=false;
-try{const found=JSON.parse(localStorage.getItem(KEY));if(found&&typeof found==='object'){data={...empty(),...found};}}catch(e){}
-const el=id=>document.getElementById(id);const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));const length=s=>[...String(s||'').replace(/\s/g,'')].length;function save(){try{localStorage.setItem(KEY,JSON.stringify(data));el('saveState')&&(el('saveState').textContent='✓ 已儲存於本機')}catch(e){el('saveState')&&(el('saveState').textContent='⚠️ 無法儲存，請匯出文字備份')}}
+function loadProgress(){
+  try {
+    const saved=JSON.parse(localStorage.getItem(moduleKey()));
+    if(saved && typeof saved==='object') return {...empty(),...saved};
+  } catch {}
+  return empty();
+}
+function switchModule(id){
+  const target=window.MODULES.find(lesson=>lesson.id===id);
+  if(!target){showLanding();return;}
+  if(M!==target) {
+    M=target;
+    data=loadProgress();
+  }
+  el('landing').hidden=true;
+  el('course-area').hidden=false;
+  quizStage='all';
+  qi=0;
+  nav('home');
+}
+data=loadProgress();
+function showLanding(){
+  el('landing').hidden=false;
+  el('course-area').hidden=true;
+  el('topic').value='';
+  el('hero').textContent='';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+const el=id=>document.getElementById(id);const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));const length=s=>[...String(s||'').replace(/\s/g,'')].length;function save(){try{localStorage.setItem(moduleKey(),JSON.stringify(data));el('saveState')&&(el('saveState').textContent='✓ 已儲存於本機')}catch(e){el('saveState')&&(el('saveState').textContent='⚠️ 無法儲存，請匯出文字備份')}}
 function nav(id){page=id;selected=-1;revealed=false;window.scrollTo({top:0,behavior:'smooth'});render()};function pct(){return Math.round(Object.keys(data.completed).filter(k=>data.completed[k]).length/5*100)}
-function render(){el('hero').textContent=`${M.grade}｜${M.island}｜${M.title}`;el('menu').innerHTML=PAGES.map(([id,t])=>`<button class="nav ${page===id?'active':''}" onclick="nav('${id}')">${t}</button>`).join('');el('screen').innerHTML=({home:home,S:see,P:plan,E:express,A:coach,K:keep,quiz:quiz,export:portfolio}[page])();}
-function home(){return `<h2>${esc(M.title)}｜五關自學旅程</h2><p>${esc(M.subtitle)}</p><div class="line"><div class="fill" style="width:${pct()}%"></div></div><p class="muted">SPEAK完成度 ${pct()}%（須自己勾選各關完成；小測驗另計）</p><div class="steps">${['S 觀察','P 心智圖','E 寫說','A AI教練引導','K 精進發表'].map(x=>`<span class="step">${x}</span>`).join('')}</div><h3>這一關要練習什麼？</h3>${M.objectives.map(s=>`<div class="card">✓ ${esc(s)}</div>`).join('')}<div class="actions"><button class="primary" onclick="nav('S')">從 S 視覺觀察開始 →</button><button onclick="nav('quiz')">先挑戰16題練習</button></div><div class="coach">🔎 學習守則：先自己想、自己寫，再接受提示；視覺優先，其他感官必須符合真實經驗。</div>`}
-function complete(id){data.completed[id]=true;save();render()};function field(group,index,v){data[group][index]=v;save()};function textField(key,v){data[key]=v;save()};
+function render(){
+const topic=el('topic');
+if(!topic.options.length) topic.innerHTML='<option value="">請選擇主題</option>'+window.MODULES.map(lesson=>'<option value="'+esc(lesson.id)+'">'+esc(lesson.title==='我學會游泳'?'示範｜我學會游泳':lesson.island.split(' · ')[0]+'｜'+lesson.title)+'</option>').join('');
+topic.value=el('course-area').hidden?'':M.id;
+el('hero').textContent=`${M.grade}｜${M.island}｜${M.title}`;el('menu').innerHTML=PAGES.map(([id,t])=>`<button class="nav ${page===id?'active':''}" onclick="nav('${id}')">${t}</button>`).join('');el('screen').innerHTML=({home:home,S:see,P:plan,E:express,A:coach,K:keep,quiz:quiz,export:portfolio}[page])();}
+function home(){return `<h2>${esc(M.title)}｜五關自學旅程</h2><p>${esc(M.subtitle)}</p><div class="line"><div class="fill" style="width:${pct()}%"></div></div><p class="muted">SPEAK完成度 ${pct()}%（須自己勾選各關完成；小測驗另計）</p><div class="steps">${['S 觀察','P 心智圖','E 寫說','A AI教練引導','K 精進發表'].map(x=>`<span class="step">${x}</span>`).join('')}</div>${M.eventGuide ? '<div class="coach">'+esc(M.eventGuide)+'</div>' : ''}<h3>這一關要練習什麼？</h3>${M.objectives.map(s=>`<div class="card">✓ ${esc(s)}</div>`).join('')}<div class="actions"><button class="primary" onclick="nav('S')">從 S 視覺觀察開始 →</button><button onclick="nav('quiz')">先挑戰${M.questions.length}題練習</button></div><div class="coach">🔎 學習守則：先自己想、自己寫，再接受提示；視覺優先，其他感官必須符合真實經驗。</div>`}
+const nextStage={S:'P',P:'E',E:'A',A:'K',K:'export'};
+function complete(id){
+  data.completed[id]=true;
+  save();
+  nav(nextStage[id]);
+};function field(group,index,v){data[group][index]=v;save()};function textField(key,v){data[key]=v;save()};
 function fields(questions,group,arr){return `<div class="grid">${questions.map((q,i)=>`<div><label>${i+1}. ${esc(Array.isArray(q)?q[0]:q)}</label>${Array.isArray(q)?`<div class="muted">${esc(q[1])}</div>`:''}<textarea aria-label="${esc(Array.isArray(q)?q[0]:q)}" oninput="field('${group}',${i},this.value)">${esc(arr[i]||'')}</textarea></div>`).join('')}</div>`}
-function see(){return `<h2>S｜看見故事的畫面</h2><p>先回想自己真正見過的畫面。每題寫一兩句就好。</p>${fields(M.observation,'observations',data.observations)}<h3>五感詞語參考站</h3><div class="grid">${Object.entries(M.senses).map(([k,a])=>`<div class="card soft"><b>${esc(k)}</b><p class="small">${a.map(esc).join('、')}</p></div>`).join('')}</div><div class="actions"><button onclick="nav('quiz')">去做視覺練習題</button><button class="primary" onclick="complete('S')">我完成觀察 → P</button></div><p id="saveState" class="muted"></p>`}
-function plan(){return `<h2>P｜我的故事心智圖</h2><p class="muted">先蒐集關鍵語詞，不必急著寫完整句子。</p>${fields(M.mindmap,'mind',data.mind)}<div class="card soft"><b>四段故事地圖</b><p>起因 → 遇到困難 → 努力突破 → 結果與成長</p></div><div class="actions"><button onclick="nav('quiz')">事件順序練習</button><button class="primary" onclick="complete('P')">我完成構思 → E</button></div><p id="saveState" class="muted"></p>`}
-function express(){return `<h2>E｜四段作文與口說</h2><p>目標約400字，可依自己的真實經驗調整，不用刻意湊字。</p>${M.paragraph.map((p,i)=>`<div class="card"><h3>${i+1}. ${esc(p.name)} <span class="badge">參考 ${p.target} 字</span></h3><div class="muted">${esc(p.tip)}</div><p class="small">💡 ${esc(p.prompt)}</p><textarea style="min-height:145px" aria-label="${esc(p.name)}" oninput="field('draft',${i},this.value);updateCount(${i})">${esc(data.draft[i]||'')}</textarea><div class="small muted" id="count${i}">${length(data.draft[i])} 字</div></div>`).join('')}<p><b>初稿總字數：</b>${data.draft.reduce((n,s)=>n+length(s),0)} 字（重新進入本頁會更新總數）</p><div class="actions"><button onclick="nav('quiz')">句子與口語小測驗</button><button class="primary" onclick="complete('E')">我完成初稿 → A</button></div><p id="saveState" class="muted"></p>`}
+function see(){return `<h2>S｜看見故事的畫面</h2><p>${esc(M.sensoryGuide || '先回想自己真正見過的畫面。每題寫一兩句就好。')}</p>${fields(M.observation,'observations',data.observations)}<h3>五感詞語參考站</h3><div class="grid">${Object.entries(M.senses).map(([k,a])=>`<div class="card soft"><b>${esc(k)}</b><p class="small">${a.map(esc).join('、')}</p></div>`).join('')}</div>${M.sensoryExamples ? '<h3>感官例句｜細節如何帶出事件</h3><p class="muted">例句是示範。先挑一個真實感官，再連到當時的動作或結果。</p><div class="grid">'+M.sensoryExamples.map(([sense,line])=>'<div class="card"><b>'+esc(sense)+'</b><p>'+esc(line)+'</p></div>').join('')+'</div><h3>可用的成語與四字詞</h3><p class="muted">先把事情寫清楚。詞語符合你的經驗時，挑一個放進句子就夠。</p><div class="grid">'+M.expressions.map(([word,type,usage,example])=>'<div class="card soft"><b>'+esc(word)+'</b> <span class="badge">'+esc(type)+'</span><p class="small">'+esc(usage)+'</p><p>'+esc(example)+'</p></div>').join('')+'</div>' : ''}<div class="actions"><button onclick="openQuiz('S')">去做視覺練習題</button><button class="primary" onclick="complete('S')">我完成觀察 → P</button></div><p id="saveState" class="muted"></p>`}
+function plan(){return `<h2>P｜我的故事心智圖</h2><p class="muted">先蒐集關鍵語詞，不必急著寫完整句子。</p>${fields(M.mindmap,'mind',data.mind)}${M.storyParagraphs ? '<section class="card soft" aria-labelledby="story-map-title"><h3 id="story-map-title">四段故事地圖</h3><p>一段把一件事說清楚。故事從「本來在做什麼」換到「發生變化」、從「怎麼做」換到「最後怎樣」時，就另起一段。</p><p class="muted">以下四段用同一件小事示範：端湯時，湯差點灑出來。</p><ol class="story-map">'+M.storyParagraphs.map(([title,job,example,next])=>'<li class="card"><h4>'+esc(title)+'</h4><p><b>這段寫什麼？</b> '+esc(job)+'</p><p><b>示範</b> '+esc(example)+'</p><p class="muted">'+esc(next)+'</p></li>').join('')+'</ol></section>' : '<div class="card soft"><b>四段故事地圖</b><p>'+esc(M.storyMap || '起因 → 遇到困難 → 努力突破 → 結果與成長')+'</p></div>'}<div class="actions"><button onclick="openQuiz('P')">事件順序練習</button><button class="primary" onclick="complete('P')">我完成構思 → E</button></div><p id="saveState" class="muted"></p>`}
+function express(){return `<h2>E｜四段作文與口說</h2><p>${esc(M.writingGoal || '目標約400字，可依自己的真實經驗調整，不用刻意湊字。')}</p>${M.paragraph.map((p,i)=>`<div class="card"><h3>${i+1}. ${esc(p.name)} <span class="badge">參考 ${p.target} 字</span></h3><div class="muted">${esc(p.tip)}</div><p class="small">💡 ${esc(p.prompt)}</p><textarea style="min-height:145px" aria-label="${esc(p.name)}" oninput="field('draft',${i},this.value);updateCount(${i})">${esc(data.draft[i]||'')}</textarea><div class="small muted" id="count${i}">${length(data.draft[i])} 字</div></div>`).join('')}<p><b>初稿總字數：</b>${data.draft.reduce((n,s)=>n+length(s),0)} 字（重新進入本頁會更新總數）</p><div class="actions"><button onclick="openQuiz('E')">句子與口語小測驗</button><button class="primary" onclick="complete('E')">我完成初稿 → A</button></div><p id="saveState" class="muted"></p>`}
 function updateCount(i){el('count'+i).textContent=length(data.draft[i])+' 字'}
-function coachPrompt(){const drafts=data.draft.map((x,i)=>({i,t:x.trim()})).filter(x=>x.t);if(!drafts.length)return '你還沒有寫初稿。先寫下自己的故事，AI教練才能幫你發現值得補充的地方。';if(!data.mind[5])return '在最困難的一刻，你的手腳做了什麼？眼前看見什麼？先寫下真正發生的一件事。';if(!data.draft[1]||length(data.draft[1])<65)return '第二段請先聚焦一個困難：當時你看到什麼畫面？可以補上一個具體動作嗎？';if(!data.draft[2]||length(data.draft[2])<65)return '第三段你有寫到再次嘗試的具體方法嗎？想想自己如何調整呼吸、手或腳的動作。';if(!data.draft[3]||length(data.draft[3])<40)return '最後一段除了「好開心」，你學會了什麼？試著選一種結尾方向。';return '你已寫出完整四段。挑一處最重要的畫面，檢查有沒有顏色、位置、動作或前後變化，再用自己的話修改。'}
+function coachPrompt(){
+if(M.coachPrompts){
+  const promptIndex=!data.draft.some(text=>text.trim()) ? 0 :
+    !data.mind[5] ? 1 : length(data.draft[1])<65 ? 2 :
+    length(data.draft[2])<65 ? 3 : length(data.draft[3])<40 ? 4 : 5;
+  return M.coachPrompts[promptIndex];
+}
+const drafts=data.draft.map((x,i)=>({i,t:x.trim()})).filter(x=>x.t);if(!drafts.length)return '你還沒有寫初稿。先寫下自己的故事，AI教練才能幫你發現值得補充的地方。';if(!data.mind[5])return '在最困難的一刻，你的手腳做了什麼？眼前看見什麼？先寫下真正發生的一件事。';if(!data.draft[1]||length(data.draft[1])<65)return '第二段請先聚焦一個困難：當時你看到什麼畫面？可以補上一個具體動作嗎？';if(!data.draft[2]||length(data.draft[2])<65)return '第三段你有寫到再次嘗試的具體方法嗎？想想自己如何調整呼吸、手或腳的動作。';if(!data.draft[3]||length(data.draft[3])<40)return '最後一段除了「好開心」，你學會了什麼？試著選一種結尾方向。';return '你已寫出完整四段。挑一處最重要的畫面，檢查有沒有顏色、位置、動作或前後變化，再用自己的話修改。'}
 function coach(){return `<h2>A｜AI寫作教練</h2><div class="banner">本示範版採用<b>本機規則式教練</b>，不連接付費生成式AI，也不會傳送你的作文到外部服務；可以先驗證教學流程。</div><div class="coach"><b>教練問你：</b><p>${esc(coachPrompt())}</p></div><h3>六種結尾思考方向</h3><div class="grid">${M.endings.map(([k,t])=>`<div class="card soft"><b>${esc(k)}</b><p class="small">${esc(t)}</p></div>`).join('')}</div><h3>AI教練的固定規則</h3><p>找出一處優點 → 提出一個具體追問 → 孩子自行修改 → 說明修改原因。</p><div class="actions"><button class="primary" onclick="complete('A')">我看過教練提示 → K</button></div>`}
 function keep(){return `<h2>K｜修改、演說與發表</h2><p class="muted">請回看 E 的初稿，在下面寫下修改後的句段；保留原稿，不要覆蓋，才能看到成長。</p>${M.paragraph.map((p,i)=>`<div class="card"><label>修訂稿第 ${i+1} 段｜${esc(p.name)}</label><textarea oninput="field('revised',${i},this.value)">${esc(data.revised[i]||'')}</textarea></div>`).join('')}<label>我修改了什麼？為什麼？</label><textarea oninput="textField('revisionReason',this.value)">${esc(data.revisionReason||'')}</textarea><h3>1～2分鐘演說小教室</h3>${M.speech.map(s=>`<div class="card soft">🎤 ${esc(s)}</div>`).join('')}<label>我的演說提綱（只寫關鍵字）</label><textarea oninput="textField('speech',this.value)">${esc(data.speech||'')}</textarea><h3>自我檢查</h3>${M.rubric.map((s,i)=>`<label class="card"><input style="width:auto" type="checkbox" ${data.checks.includes(i)?'checked':''} onchange="check(${i},this.checked)"> ${esc(s)}</label>`).join('')}<label>我的學習反思</label><textarea oninput="textField('reflection',this.value)">${esc(data.reflection||'')}</textarea><div class="actions"><button class="primary" onclick="complete('K')">完成模組！看成長護照 →</button></div><p id="saveState" class="muted"></p>`}
 function check(i,val){data.checks=val?[...new Set([...data.checks,i])]:data.checks.filter(x=>x!==i);save()}
+function openQuiz(stage){
+  quizStage=stage;
+  qi=0;
+  nav('quiz');
+}
 function getQs(){return quizStage==='all'?M.questions:M.questions.filter(q=>q.stage===quizStage)}
-function quiz(){const qs=getQs();if(qi>=qs.length)qi=0;const q=qs[qi],record=data.answers[q.id];return `<h2>🧩 技能練習｜逐項詳解</h2><p>每道題目都有四個選項的解析。先選答案，再點「查看詳解」。</p><div class="actions">${['all','S','P','E','K'].map(st=>`<button ${quizStage===st?'class="primary"':''} onclick="quizStage='${st}';qi=0;selected=-1;revealed=false;render()">${st==='all'?'全部16題':st+'階段'}</button>`).join('')}</div><div class="card"><span class="pill">第 ${qi+1}／${qs.length} 題 · ${esc(q.kind)}</span><h3>${esc(q.q)}</h3>${q.options.map((o,i)=>`<button class="choice ${selected===i?'sel':''} ${revealed&&i===q.answer?'good':''} ${revealed&&i===selected&&i!==q.answer?'bad':''}" onclick="choose(${i})">${'ABCD'[i]}. ${esc(o)}</button>`).join('')}${revealed?`<div class="result"><b>${selected===q.answer?'✓ 答對了！':'再想一次：正確答案 '+ 'ABCD'[q.answer]}</b></div>${q.why.map((x,i)=>`<div class="expl"><b>${'ABCD'[i]} ${i===q.answer?'（正解）':''}</b>：${esc(x)}</div>`).join('')}`:''}<div class="actions"><button ${selected<0||revealed?'disabled':''} onclick="reveal()">查看逐項詳解</button><button onclick="nextQ()">${qi===qs.length-1?'回到第一題':'下一題 →'}</button></div></div><p class="muted">已練習 ${Object.keys(data.answers).length} / ${M.questions.length} 題；答錯可以再次嘗試。每題保存最近一次作答。</p><button onclick="nav('home')">回學習首頁</button>`}
+function quiz(){const qs=getQs();if(qi>=qs.length)qi=0;const q=qs[qi],record=data.answers[q.id];return `<h2>🧩 技能練習｜逐項詳解</h2><p>每道題目都有四個選項的解析。先選答案，再點「查看詳解」。</p><div class="actions">${['all','S','P','E','K'].map(st=>`<button ${quizStage===st?'class="primary"':''} onclick="quizStage='${st}';qi=0;selected=-1;revealed=false;render()">${st==='all'?'全部'+M.questions.length+'題':st+'階段'}</button>`).join('')}</div><div class="card"><span class="pill">第 ${qi+1}／${qs.length} 題 · ${esc(q.kind)}</span><h3>${esc(q.q)}</h3>${q.options.map((o,i)=>`<button class="choice ${selected===i?'sel':''} ${revealed&&i===q.answer?'good':''} ${revealed&&i===selected&&i!==q.answer?'bad':''}" onclick="choose(${i})">${'ABCD'[i]}. ${esc(o)}</button>`).join('')}${revealed?`<div class="result"><b>${selected===q.answer?'✓ 答對了！':'再想一次：正確答案 '+ 'ABCD'[q.answer]}</b></div>${q.why.map((x,i)=>`<div class="expl"><b>${'ABCD'[i]} ${i===q.answer?'（正解）':''}</b>：${esc(x)}</div>`).join('')}`:''}<div class="actions"><button ${selected<0||revealed?'disabled':''} onclick="reveal()">查看逐項詳解</button><button onclick="nextQ()">${qi===qs.length-1?'回到第一題':'下一題 →'}</button></div></div><p class="muted">已練習 ${Object.keys(data.answers).length} / ${M.questions.length} 題；答錯可以再次嘗試。每題保存最近一次作答。</p><button onclick="nav('home')">回學習首頁</button>`}
 function choose(i){if(revealed)return;selected=i;render()};function reveal(){if(selected<0)return;const q=getQs()[qi];revealed=true;data.answers[q.id]={selected,correct:selected===q.answer};save();render()};function nextQ(){qi=(qi+1)%getQs().length;selected=-1;revealed=false;render()}
-function report(){return [`# ${M.title}｜學習護照`, `模組：${M.id}／${M.grade}`,`SPEAK完成：${Object.keys(data.completed).filter(k=>data.completed[k]).join(', ')}`,'\n【觀察紀錄】',...M.observation.map((x,i)=>`${x} ${data.observations[i]||''}`),'\n【心智圖】',...M.mindmap.map((x,i)=>`${x[0]}：${data.mind[i]||''}`),'\n【初稿】',...data.draft.map((x,i)=>`第${i+1}段：\n${x}`),'\n【修訂稿】',...data.revised.map((x,i)=>`第${i+1}段：\n${x}`),'\n【修改理由】',data.revisionReason,'\n【演說提綱】',data.speech,'\n【反思】',data.reflection].join('\n')}
+const profileKey='writing-island:student-profile:v1';
+const studentFields=[['班級','student-class'],['座號','student-seat'],['姓名','student-name']];
+function readStudentProfile(){
+  return Object.fromEntries(studentFields.map(([label,id])=>[label,el(id).value.trim()]));
+}
+function setupStudentProfile(){
+  let stored={};
+  try {stored=JSON.parse(localStorage.getItem(profileKey)) || {};} catch {}
+  for(const [label,id] of studentFields){
+    el(id).value=typeof stored[label]==='string' ? stored[label].slice(0,el(id).maxLength) : '';
+    el(id).addEventListener('input',()=>{
+      try {
+        localStorage.setItem(profileKey,JSON.stringify(readStudentProfile()));
+        el('student-status').textContent='';
+      } catch {
+        el('student-status').textContent='這個瀏覽器無法保存學生資料，關閉頁面後需重新填寫。';
+      }
+    });
+  }
+}
+function clearStudentProfile(){
+  try {localStorage.removeItem(profileKey);}
+  catch {
+    el('student-status').textContent='無法清除瀏覽器中的學生資料。';
+    return;
+  }
+  studentFields.forEach(([,id])=>{el(id).value='';});
+  el('student-status').textContent='學生資料已清除。';
+}
+setupStudentProfile();
+function report(){return [`# ${M.title}｜學習護照`,...Object.entries(readStudentProfile()).filter(([,value])=>value).map(([label,value])=>label+"："+value), `模組：${M.id}／${M.grade}`,`SPEAK完成：${Object.keys(data.completed).filter(k=>data.completed[k]).join(', ')}`,'\n【觀察紀錄】',...M.observation.map((x,i)=>`${x} ${data.observations[i]||''}`),'\n【心智圖】',...M.mindmap.map((x,i)=>`${x[0]}：${data.mind[i]||''}`),'\n【初稿】',...data.draft.map((x,i)=>`第${i+1}段：\n${x}`),'\n【修訂稿】',...data.revised.map((x,i)=>`第${i+1}段：\n${x}`),'\n【修改理由】',data.revisionReason,'\n【演說提綱】',data.speech,'\n【反思】',data.reflection].join('\n')}
 function download(){const blob=new Blob([report()],{type:'text/plain;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=M.id+'_學習護照.txt';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),2000)}
 function portfolio(){const answered=Object.values(data.answers),correct=answered.filter(a=>a.correct).length;return `<h2>📚 我的成長護照</h2><div class="grid"><div class="card soft"><b>SPEAK完成率</b><h2>${pct()}%</h2></div><div class="card soft"><b>最近一次答對</b><h2>${correct} / ${answered.length}</h2></div><div class="card soft"><b>初稿字數</b><h2>${data.draft.reduce((n,t)=>n+length(t),0)}</h2></div><div class="card soft"><b>修訂稿字數</b><h2>${data.revised.reduce((n,t)=>n+length(t),0)}</h2></div></div><p>保存紀錄不等於教師評定過關；文章與演說仍需要自評或教師依規準檢核。</p><div class="actions"><button class="primary" onclick="download()">⬇ 匯出我的學習成果（文字檔）</button><button onclick="copyReport()">複製到剪貼簿</button></div><p id="reportState" class="muted"></p><details class="card"><summary>清除本機練習資料</summary><p>此操作不能復原，請先匯出成果。</p><button onclick="resetAll()">確定清除</button></details>`}
 async function copyReport(){try{await navigator.clipboard.writeText(report());el('reportState').textContent='✓ 已複製'}catch(e){el('reportState').textContent='此瀏覽器無法直接複製，請用下載文字檔'}}
-function resetAll(){if(confirm('確定刪除本裝置上此模組的所有學習資料？')){localStorage.removeItem(KEY);data=empty();nav('home')}}
+function resetAll(){if(confirm('確定刪除本裝置上此模組的所有學習資料？')){localStorage.removeItem(moduleKey());data=empty();nav('home')}}
 render();
+showLanding();
 </script><script>if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {navigator.serviceWorker.register('./sw.js').catch(error => console.warn('Offline setup unavailable', error));}</script></body></html>
 
