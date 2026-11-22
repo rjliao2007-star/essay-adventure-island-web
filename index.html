@@ -34,6 +34,10 @@ button:focus-visible, summary:focus-visible { outline:3px solid #bd7215; outline
 .site-credit{margin:0 0 0 auto;text-align:right;font-size:.9rem;line-height:1.5}
 .site-credit a{color:inherit;text-decoration:underline}
 .landing-intro > p{text-indent:2em}
+#topic summary{cursor:pointer;padding:.55rem 0;font-weight:700}
+#topic-options{display:grid;grid-template-columns:minmax(0,1fr);gap:.35rem}
+#topic-options button{display:block;width:100%;min-height:44px;text-align:left;white-space:nowrap;overflow-x:auto;font-size:clamp(.85rem,3.8vw,1rem);padding:.5rem .45rem}
+@media(orientation:landscape) and (min-width:480px){#topic-options button{font-size:1rem;padding-inline:.75rem}}
 </style></head><body>
 <script>
 /* 複製模組時，只需增加這個陣列中的新物件；題目需自行撰寫，不要複製答案當作新題。 */
@@ -1857,7 +1861,7 @@ for (const lesson of window.MODULES) lesson.questions.push(...(punctuationQuesti
   <p class="muted">草稿和進度會留在這個瀏覽器，也可以匯出成長護照。</p>
 </div>
 <img src="./lesson-landing.png" width="864" height="576" alt="背著故事書的小海龜游向冒險島">
-</section><div class="card soft"><label for="topic">選擇課程主題</label><select id="topic" onchange="switchModule(this.value)"></select></div><section id="course-area" hidden><div class="actions"><button type="button" onclick="showLanding()">回網站首頁</button></div><div class="banner">📌 本版免登入，<b>進度只保存在此裝置與瀏覽器</b>。換裝置、清除瀏覽資料或使用無痕模式，可能遺失進度。學生欄位依老師指示填寫。作文請勿寫住址、電話等個資。<details class="app-install"><summary>如何加到手機主畫面</summary><p>iPhone／iPad：用 Safari 開啟後，點「分享」→「加入主畫面」。Android：用 Chrome 開啟後，從選單選「安裝應用程式」或「加到主畫面」。</p></details></div><section class="card" aria-labelledby="student-heading">
+</section><div class="card soft"><details id="topic"><summary id="topic-summary">選擇課程主題</summary><div id="topic-options"></div></details></div><section id="course-area" hidden><div class="actions"><button type="button" onclick="showLanding()">回網站首頁</button></div><div class="banner">📌 本版免登入，<b>進度只保存在此裝置與瀏覽器</b>。換裝置、清除瀏覽資料或使用無痕模式，可能遺失進度。學生欄位依老師指示填寫。作文請勿寫住址、電話等個資。<details class="app-install"><summary>如何加到手機主畫面</summary><p>iPhone／iPad：用 Safari 開啟後，點「分享」→「加入主畫面」。Android：用 Chrome 開啟後，從選單選「安裝應用程式」或「加到主畫面」。</p></details></div><section class="card" aria-labelledby="student-heading">
 <h2 id="student-heading">學生資料</h2>
 <p class="muted" id="student-note">依老師指示填寫，可留空。資料留在這個瀏覽器，匯出的學習護照會包含已填入的欄位。</p>
 <div class="grid student-grid" aria-describedby="student-note">
@@ -1892,6 +1896,7 @@ function switchModule(id){
     M=target;
     data=loadProgress();
   }
+  el('topic').open=false;
   el('landing').hidden=true;
   el('course-area').hidden=false;
   quizStage='all';
@@ -1902,16 +1907,22 @@ data=loadProgress();
 function showLanding(){
   el('landing').hidden=false;
   el('course-area').hidden=true;
-  el('topic').value='';
+  el('topic').open=false;
+  el('topic-summary').textContent='選擇課程主題';
   el('hero').textContent='';
   window.scrollTo({top:0,behavior:'smooth'});
 }
 const el=id=>document.getElementById(id);const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));const length=s=>[...String(s||'').replace(/\s/g,'')].length;function save(){try{localStorage.setItem(moduleKey(),JSON.stringify(data));el('saveState')&&(el('saveState').textContent='✓ 已儲存於本機')}catch(e){el('saveState')&&(el('saveState').textContent='⚠️ 無法儲存，請匯出文字備份')}}
 function nav(id){page=id;selected=-1;revealed=false;window.scrollTo({top:0,behavior:'smooth'});render()};function pct(){return Math.round(Object.keys(data.completed).filter(k=>data.completed[k]).length/5*100)}
 function render(){
-const topic=el('topic');
-if(!topic.options.length) topic.innerHTML='<option value="">請選擇主題</option>'+window.MODULES.map(lesson=>'<option value="'+esc(lesson.id)+'">'+esc(lesson.title==='我學會游泳'?'示範｜我學會游泳':lesson.island.split(' · ')[0]+'｜'+lesson.title)+'</option>').join('');
-topic.value=el('course-area').hidden?'':M.id;
+const options=el('topic-options');
+if(!options.innerHTML){
+  options.innerHTML=window.MODULES.map(lesson=>{
+    const week=lesson.id==='L3-EV-001'?'示範':lesson.island.split(' · ')[0];
+    return '<button type="button" onclick="switchModule(this.value)" value="'+esc(lesson.id)+'">'+esc(week+'｜'+lesson.title)+'</button>';
+  }).join('');
+}
+el('topic-summary').textContent=el('course-area').hidden?'選擇課程主題':M.title;
 el('hero').textContent=`${M.island}｜${M.title}`;el('menu').innerHTML=PAGES.map(([id,t])=>`<button class="nav ${page===id?'active':''}" onclick="nav('${id}')">${t}</button>`).join('');el('screen').innerHTML=({home:home,S:see,P:plan,E:express,A:coach,K:keep,quiz:quiz,export:portfolio}[page])();}
 function home(){return `<h2>${esc(M.title)}｜五關自學旅程</h2><p>${esc(M.subtitle)}</p><div class="line"><div class="fill" style="width:${pct()}%"></div></div><p class="muted">SPEAK完成度 ${pct()}%（須自己勾選各關完成；小測驗另計）</p><div class="steps">${['S 觀察','P 心智圖','E 寫說','A AI教練引導','K 精進發表'].map(x=>`<span class="step">${x}</span>`).join('')}</div>${M.eventGuide ? '<div class="coach">'+esc(M.eventGuide)+'</div>' : ''}<h3>這一關要練習什麼？</h3>${M.objectives.map(s=>`<div class="card">✓ ${esc(s)}</div>`).join('')}<div class="actions"><button class="primary" onclick="nav('S')">從 S 視覺觀察開始 →</button><button onclick="nav('quiz')">先挑戰${M.questions.length}題練習</button></div><div class="coach">🔎 學習守則：先自己想、自己寫，再接受提示；視覺優先，其他感官必須符合真實經驗。</div>`}
 const nextStage={S:'P',P:'E',E:'A',A:'K',K:'export'};
