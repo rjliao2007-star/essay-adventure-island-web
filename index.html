@@ -210,8 +210,134 @@ function clearStudentProfile(){
 }
 setupStudentProfile();
 function report(){return [`# ${M.title}｜學習護照`,...Object.entries(readStudentProfile()).filter(([,value])=>value).map(([label,value])=>label+"："+value), `模組：${M.id}／${M.grade}`,`SPEAK完成：${Object.keys(data.completed).filter(k=>data.completed[k]).join(', ')}`,'\n【觀察紀錄】',...M.observation.map((x,i)=>`${x} ${data.observations[i]||''}`),'\n【心智圖】',...M.mindmap.map((x,i)=>`${x[0]}：${data.mind[i]||''}`),'\n【初稿】',...data.draft.map((x,i)=>`第${i+1}段：\n${x}`),'\n【修訂稿】',...data.revised.map((x,i)=>`第${i+1}段：\n${x}`),'\n【修改理由】',data.revisionReason,'\n【演說提綱】',...(M.speechPlan && data.speechOutline.some(text=>text.trim()) ? M.speechPlan.map(([title],i)=>title+'：'+(data.speechOutline[i]||'')) : []),data.speech,'\n【反思】',data.reflection].join('\n')}
+function passportPdfName(profile,title){
+  const clean=value=>String(value).replace(/[<>:"/\\|?*\u0000-\u001f]/g,'').trim();
+  const seat=clean(profile['座號']);
+  return seat+clean(profile['姓名'])+'_'+clean(title)+'.pdf';
+}
+
+function makePassportPdf(reportText){
+  const width=1190,height=1684,margin=94,lineHeight=42;
+  const font='27px system-ui, "PingFang TC", "Microsoft JhengHei", sans-serif';
+  const canvas=document.createElement('canvas');
+  canvas.width=width; canvas.height=height;
+  const context=canvas.getContext('2d',{alpha:false});
+  if(!context) throw new Error('Canvas unavailable');
+  context.font=font;
+  const lines=[];
+  for(const paragraph of reportText.replace(/\r\n?/g,'\n').split('\n')){
+    const heading=/^【.*】$/.test(paragraph);
+    let line='';
+    for(const character of paragraph.replace(/\t/g,'  ')){
+      if(line && context.measureText(line+character).width>width-2*margin){
+        lines.push({text:line,heading});
+        line='';
+      }
+      line+=character;
+    }
+    lines.push({text:line,heading});
+  }
+
+  const glyphs=[...new Set(lines.map(line=>line.text).join(''))];
+  if(glyphs.length>=65535) throw new Error('Too many distinct characters');
+  const codes=new Map(glyphs.map((character,i)=>[character,(i+1).toString(16).padStart(4,'0')]));
+  const mappings=glyphs.map(character=>{
+    const unicode=character.split('').map(unit=>unit.charCodeAt(0).toString(16).padStart(4,'0')).join('');
+    return '<'+codes.get(character)+'> <'+unicode+'>';
+  });
+  let cmap='/CIDInit /ProcSet findresource begin\n12 dict begin\nbegincmap\n/CIDSystemInfo << /Registry (Adobe) /Ordering (UCS) /Supplement 0 >> def\n/CMapName /PassportUnicode def\n/CMapType 2 def\n1 begincodespacerange\n<0000> <FFFF>\nendcodespacerange\n';
+  for(let i=0;i<mappings.length;i+=100){
+    const batch=mappings.slice(i,i+100);
+    cmap+=batch.length+' beginbfchar\n'+batch.join('\n')+'\nendbfchar\n';
+  }
+  cmap+='endcmap\nCMapName currentdict /CMap defineresource pop\nend\nend';
+
+  const encoder=new TextEncoder(),chunks=[],offsets=[0];
+  let size=0;
+  function append(value){
+    const bytes=typeof value==='string'?encoder.encode(value):value;
+    chunks.push(bytes); size+=bytes.length;
+  }
+  function object(id,body){
+    offsets[id]=size; append(id+' 0 obj\n'); append(body); append('\nendobj\n');
+  }
+  function stream(id,dict,content){
+    const bytes=typeof content==='string'?encoder.encode(content):content;
+    offsets[id]=size;
+    append(id+' 0 obj\n<< '+dict+' /Length '+bytes.length+' >>\nstream\n');
+    append(bytes); append('\nendstream\nendobj\n');
+  }
+
+  const rows=Math.floor((height-2*margin-62)/lineHeight);
+  const count=Math.ceil(lines.length/rows);
+  append('%PDF-1.4\n');
+  object(1,'<< /Type /Catalog /Pages 2 0 R >>');
+  object(2,'<< /Type /Pages /Count '+count+' /Kids ['+Array.from({length:count},(_,i)=>(6+i*3)+' 0 R').join(' ')+'] >>');
+  object(3,'<< /Type /Font /Subtype /Type0 /BaseFont /HeiseiMin-W3 /Encoding /Identity-H /DescendantFonts [4 0 R] /ToUnicode 5 0 R >>');
+  object(4,'<< /Type /Font /Subtype /CIDFontType0 /BaseFont /HeiseiMin-W3 /CIDSystemInfo << /Registry (Adobe) /Ordering (Japan1) /Supplement 0 >> /DW 1000 >>');
+  stream(5,'',cmap);
+
+  for(let page=0;page<count;page++){
+    context.fillStyle='#fff'; context.fillRect(0,0,width,height);
+    context.fillStyle='#165b75'; context.fillRect(margin,60,width-2*margin,5);
+    context.font=font;
+    let hiddenText='BT /F1 13.5 Tf 3 Tr\n';
+    lines.slice(page*rows,(page+1)*rows).forEach(({text,heading},index)=>{
+      const y=margin+30+index*lineHeight;
+      context.fillStyle=heading?'#165b75':'#173045';
+      context.fillText(text,margin,y);
+      if(text){
+        const encoded=[...text].map(character=>codes.get(character)).join('');
+        hiddenText+='1 0 0 1 '+margin/2+' '+(height-y)/2+' Tm <'+encoded+'> Tj\n';
+      }
+    });
+    context.fillStyle='#516879';
+    context.fillText((page+1)+' / '+count,margin,height-65);
+    const jpeg=Uint8Array.from(atob(canvas.toDataURL('image/jpeg',0.9).split(',')[1]),character=>character.charCodeAt(0));
+    const id=6+page*3;
+    object(id,'<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /XObject << /Picture '+(id+2)+' 0 R >> /Font << /F1 3 0 R >> >> /Contents '+(id+1)+' 0 R >>');
+    stream(id+1,'','q 595 0 0 842 0 0 cm /Picture Do Q\n'+hiddenText+'ET\n');
+    stream(id+2,'/Type /XObject /Subtype /Image /Width 1190 /Height 1684 /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode',jpeg);
+  }
+  const xref=size;
+  append('xref\n0 '+offsets.length+'\n0000000000 65535 f \n');
+  for(const offset of offsets.slice(1)) append(String(offset).padStart(10,'0')+' 00000 n \n');
+  append('trailer\n<< /Size '+offsets.length+' /Root 1 0 R >>\nstartxref\n'+xref+'\n%%EOF\n');
+  return new Blob(chunks,{type:'application/pdf'});
+}
+
+async function downloadPassportPdf(){
+  const profile=readStudentProfile();
+  if(!profile['座號']?.replace(/[<>:"/\\|?*\u0000-\u001f]/g,'').trim() || !profile['姓名']?.replace(/[<>:"/\\|?*\u0000-\u001f]/g,'').trim()){
+    el('reportState').textContent='請先填座號和姓名，PDF 檔名才會正確。';
+    el(profile['座號']?'student-name':'student-seat').focus();
+    return;
+  }
+  try {
+    const filename=passportPdfName(profile,M.title);
+    const pdf=makePassportPdf(report());
+    const file=new File([pdf],filename,{type:pdf.type});
+    if(navigator.canShare?.({files:[file]})){
+      try {
+        await navigator.share({files:[file]});
+        return;
+      } catch(error) {
+        if(error.name==='AbortError') return;
+      }
+    }
+    const url=URL.createObjectURL(file),link=document.createElement('a');
+    link.href=url; link.download=filename;
+    document.body.appendChild(link); link.click(); link.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),60000);
+    el('reportState').textContent='PDF 已準備下載：'+filename;
+  } catch {
+    el('reportState').textContent='這次無法產生 PDF。請重試，或先用文字檔保存作品。';
+  }
+}
+
+
 function download(){const blob=new Blob([report()],{type:'text/plain;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=M.id+'_學習護照.txt';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),2000)}
-function portfolio(){const answered=Object.values(data.answers),correct=answered.filter(a=>a.correct).length;return `<h2>📚 我的成長護照</h2><div class="grid"><div class="card soft"><b>SPEAK完成率</b><h2>${pct()}%</h2></div><div class="card soft"><b>最近一次答對</b><h2>${correct} / ${answered.length}</h2></div><div class="card soft"><b>初稿字數</b><h2>${data.draft.reduce((n,t)=>n+length(t),0)}</h2></div><div class="card soft"><b>修訂稿字數</b><h2>${data.revised.reduce((n,t)=>n+length(t),0)}</h2></div></div><p>保存紀錄不等於教師評定過關；文章與演說仍需要自評或教師依規準檢核。</p><div class="actions"><button class="primary" onclick="download()">⬇ 匯出我的學習成果（文字檔）</button><button onclick="copyReport()">複製到剪貼簿</button></div><p id="reportState" class="muted"></p><details class="card"><summary>清除本機練習資料</summary><p>此操作不能復原，請先匯出成果。</p><button onclick="resetAll()">確定清除</button></details>`}
+function portfolio(){const answered=Object.values(data.answers),correct=answered.filter(a=>a.correct).length;return `<h2>📚 我的成長護照</h2><div class="grid"><div class="card soft"><b>SPEAK完成率</b><h2>${pct()}%</h2></div><div class="card soft"><b>最近一次答對</b><h2>${correct} / ${answered.length}</h2></div><div class="card soft"><b>初稿字數</b><h2>${data.draft.reduce((n,t)=>n+length(t),0)}</h2></div><div class="card soft"><b>修訂稿字數</b><h2>${data.revised.reduce((n,t)=>n+length(t),0)}</h2></div></div><p>保存紀錄不等於教師評定過關；文章與演說仍需要自評或教師依規準檢核。</p><div class="actions"><button class="primary" onclick="downloadPassportPdf()">匯出 PDF</button><button onclick="download()">匯出文字檔</button><button onclick="copyReport()">複製到剪貼簿</button></div><p class="muted">iPad 若打開分享選單，選「儲存到『檔案』」。檔名為「座號姓名_作文主題.pdf」。</p><p id="reportState" class="muted" role="status"></p><details class="card"><summary>清除本機練習資料</summary><p>此操作不能復原，請先匯出成果。</p><button onclick="resetAll()">確定清除</button></details>`}
 async function copyReport(){try{await navigator.clipboard.writeText(report());el('reportState').textContent='✓ 已複製'}catch(e){el('reportState').textContent='此瀏覽器無法直接複製，請用下載文字檔'}}
 function resetAll(){if(confirm('確定刪除本裝置上此模組的所有學習資料？')){localStorage.removeItem(moduleKey());data=empty();nav('home')}}
 render();
